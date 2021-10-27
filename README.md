@@ -31,35 +31,6 @@ Trebuie predate:
 
 Temele se predau exclusiv într-un IDE (PyCharm, VS Code etc.).
 
---
-
-1. Scrieți un program pentru gestionarea unei asociații de proprietari. Vor fi suportate operațiile:  
-   1.1. Adăugare / ștergere / modificare cheltuială: se efectuează pe bază de număr de apartament. O cheltuială conține număr apartament, suma, data (`DD.MM.YYYY`) și tipul: `întreținere`, `canal`, `alte cheltuieli`.  
-   1.2. Ștergerea tuturor cheltuielilor pentru un apartament dat.  
-   1.3. Adunarea unei valori la toate cheltuielile dintr-o dată citită.  
-   1.4. Determinarea celei mai mari cheltuieli pentru fiecare tip de cheltuială.  
-   1.5. Ordonarea cheltuielilor descrescător după sumă.  
-   1.6. Afișarea sumelor lunare pentru fiecare apartament.  
-   1.7. Undo.  
-
-2. Scrieți un program pentru gestionarea unui inventar dintr-o instituție. Vor fi suportate operațiile:  
-   2.1. Adăugare / ștergere / modificare obiect: se efectuează pe bază de număr de inventar / ID. Un obiect conține: ID, nume, descriere (nenule), preț achiziție, locație (exact `4` caractere).  
-   2.2. Mutarea tuturor obiectelor dintr-o locație în alta.  
-   2.3.	Concatenarea unui string citit la toate descrierile obiectelor cu prețul mai mare decât o valoare citită.  
-   2.4.	Determinarea celui mai mare preț pentru fiecare locație.  
-   2.5.	Ordonarea obiectelor crescător după prețul de achiziție.  
-   2.6.	Afișarea sumelor prețurilor pentru fiecare locație.  
-   2.7.	Undo.  
-
-3. Scrieți un program pentru gestionarea rezervărilor unei companii aeriene. Vor fi suportate operațiile:  
-   3.1. Adăugare / ștergere / modificare rezervare: se efectuează pe bază de număr de rezervare / ID. O rezervare conține: ID, nume, clasa (`economy`, `economy plus`, `business`), preț, checkin făcut (`da` / `nu`).  
-   3.2. Trecerea tuturor rezervărilor făcute pe un nume citit la o clasă superioară.  
-   3.3. Ieftinirea tuturor rezervărilor la care s-a făcut checkin cu un procentaj citit.   
-   3.4. Determinarea prețului maxim pentru fiecare clasă.  
-   3.5. Ordonarea rezervărilor descrescător după preț.  
-   3.6. Afișarea sumelor prețurilor pentru fiecare nume.  
-   3.7. Undo.  
-
 4. Scrieți un program pentru gestionarea unei librării. Vor fi suportate operațiile:  
    4.1. Adăugare / ștergere / modificare vânzare: se efectuează pe bază de număr de vânzare / ID. O vânzare conține: ID, titlu carte, gen carte, preț, tip reducere client (`none`, `silver`, `gold`).  
    4.2. Aplicarea unui discount de `5%` pentru toate reducerile silver și `10%` pentru toate reducerile gold.  
