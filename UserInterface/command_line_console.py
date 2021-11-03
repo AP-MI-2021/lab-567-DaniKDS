@@ -37,7 +37,14 @@ def handle_delete(carti, tokens):
 
 
 def run_command(carti):
+    print("Comenzile disponibile sunt:")
+    print("add <id_carte> <titlu> <gen> <pret> <tip_reducere>")
+    print("delete <id_carte>")
+    print("showall")
+    print("exit")
+
     while True:
+
         inp = input("command> ")
         command = inp.replace(",","")
         tokens = command.split(" ")
