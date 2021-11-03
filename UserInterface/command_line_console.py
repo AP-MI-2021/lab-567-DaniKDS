@@ -46,16 +46,19 @@ def run_command(carti):
     while True:
 
         inp = input("command> ")
-        command = inp.replace(",","")
-        tokens = command.split(" ")
+        commands_before_split = inp.replace(",","")
+        commands = commands_before_split.split(";")
+        for command in commands:
 
-        if tokens[0] == "add":
-            carti = handle_add(carti,tokens)
-        elif tokens[0] == "showall":
-            handle_show_all(carti)
-        elif tokens[0] == "delete":
-            carti = handle_delete(carti,tokens)
-        elif tokens[0] == "exit":
-            break
-        else:
-            print("Invalid command!")
+            tokens = command.split()
+
+            if tokens[0] == "add":
+                carti = handle_add(carti,tokens)
+            elif tokens[0] == "showall":
+                handle_show_all(carti)
+            elif tokens[0] == "delete":
+                carti = handle_delete(carti,tokens)
+            elif tokens[0] == "exit":
+                return
+            else:
+                print("Invalid command!")
