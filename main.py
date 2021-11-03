@@ -1,6 +1,7 @@
 from Logic.crud import create
 from Tests.tests import test_create, test_crud
 from UserInterface.console import run_ui
+from UserInterface.command_line_console import run_command
 
 
 def main():
@@ -15,7 +16,17 @@ def main():
     carti = create(carti, 6, "Fire", "roman", 2400, "silver")
     carti = create(carti, 7, "Fox", "poezie", 18, "gold")
 
-    carti = run_ui(carti)
+    print("1.Interfata cu meniu")
+    print("2.Interfata cu comanda")
+    var= input("Introduceti optiunea: ")
+    if var == '1':
+        carti = run_ui(carti)
+    elif var == '2':
+        carti = run_command(carti)
+    else:
+        print('Optiune invalida!')
+
+
 
 if __name__ == '__main__':
     test_crud()
