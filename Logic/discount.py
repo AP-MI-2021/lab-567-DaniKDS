@@ -20,6 +20,7 @@ def discount_function(lista_carti):
                 pret_nou,
                 get_reducere_carte(carte)
             ))
+
         elif get_reducere_carte(carte) == "gold" :
             pret_nou = get_pret_carte(carte)-(10/100)*get_pret_carte(carte)
 

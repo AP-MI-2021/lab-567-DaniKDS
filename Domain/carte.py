@@ -64,4 +64,3 @@ def get_reducere_carte(carte):
 
 def get_str_carte(carte):
     return  f'Cartea are id-ul:  {get_id(carte)} , titlu: {get_titlu(carte)} , genul : {get_gen_carte(carte)} , pret: {get_pret_carte(carte)}, tip reducere : {get_reducere_carte(carte)}.'
-

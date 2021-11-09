@@ -1,7 +1,13 @@
+from unittest import result
+
 from Domain.carte import get_str_carte, get_titlu, get_gen_carte, get_pret_carte, get_reducere_carte, creaza_carte
 from Logic.crud import create, read, update, delete
 from Logic.discount import discount_function
+from Logic.min_price_for_gen import get_min_price_for_gen
 from Logic.modifygen import modify_gen
+from Logic.ordonare_vanzari_crescator_pret import ordonare_crecator_dupa_pret
+from Logic.show_number_titles_for_all_gen import get_number_titles_for_gen
+from Logic.undo_redo import do_undo, do_redo
 
 
 def show_menu():
@@ -11,18 +17,18 @@ def show_menu():
     print('4.Determinarea prețului minim pentru fiecare gen.')
     print('5.Ordonarea vânzărilor crescător după preț.')
     print('6.Afișarea numărului de titluri distincte pentru fiecare gen.')
-    print('7.Undo.')
+    print('u.Undo')
+    print('r.Redo')
     print('x. Exit')
 
-def handle_add(carti):
+def handle_add(carti, undo_list, redo_list):
     try:
-
         id_carte = int(input('Dati id-ul cartii: '))
         titlu = input('Dati titlul cartii: ')
         gen = input('Dati genul cartii: ')
         pret = float(input('Dati pretul cartii: '))
         tip_reducere = str(input('Dati tipul de reducere al cartii: '))
-        return create(carti, id_carte, titlu, gen, pret, tip_reducere)
+        return create(carti, id_carte, titlu, gen, pret, tip_reducere, undo_list, redo_list)
     except ValueError as ve:
         print("EROARE",ve)
 
@@ -40,24 +46,24 @@ def handle_show_details(carti):
     print(f'Pret: {get_pret_carte(carte)}')
     print(f'tip_de_reducere: {get_reducere_carte(carte)}')
 
-def handle_update(carti):
+def handle_update(carti, undo_list, redo_list):
     try:
         id_carte = int(input('Dati id-ul cartii care se actualizeaza: '))
         titlu = input('Dati noul titlu al cartii: ')
         gen = input('Dati noul gen al cartii: ')
         pret = float(input('Dati noul pret al cartii: '))
         tip = input('Dati noul tipul de reducere client al cartii: ')
-        return update(carti, creaza_carte(id_carte, titlu, gen, pret, tip))
+        return update(carti, creaza_carte(id_carte, titlu, gen, pret, tip,undo_list,redo_list))
     except ValueError as ve:
         print('Eroare:', ve)
 
     return carti
 
-def handle_delete(carti):
+def handle_delete(carti, undo_list, redo_list):
 
     try:
         id_carte = int(input('Dati id-ul cartii care se va sterge: '))
-        carti = delete(carti, id_carte)
+        carti = delete(carti, id_carte, undo_list, redo_list)
         print('Stergerea a fost efectuata cu succes.')
         return carti
     except ValueError as ve:
@@ -65,7 +71,7 @@ def handle_delete(carti):
     return carti
 
 
-def handle_crud(carti):
+def handle_crud(carti, undo_list, redo_list):
     while True:
         print('1. Adaugare')
         print('2. Modificare')
@@ -76,11 +82,11 @@ def handle_crud(carti):
 
         optiune = input('Optiunea aleasa: ')
         if optiune == '1':
-            carti = handle_add(carti)
+            carti = handle_add(carti, undo_list, redo_list)
         elif optiune == '2':
-            carti = handle_update(carti)
+            carti = handle_update(carti, undo_list, redo_list)
         elif optiune == '3':
-            carti = handle_delete(carti)
+            carti = handle_delete(carti, undo_list, redo_list)
         elif optiune == 'a':
             handle_show_all(carti)
         elif optiune == 'd':
@@ -112,19 +118,62 @@ def handle_modify_gen(carti):
     return carti
 
 
+def handle_min_price_gen(carti):
+    result = get_min_price_for_gen(carti)
+    for gen in result:
+        print(f' {gen} , {get_str_carte(result[gen])}')
 
 
-def run_ui(carti):
+def handle_sorted_for_price(carti):
+    carti = ordonare_crecator_dupa_pret(carti)
+    handle_show_all(carti)
+
+
+def handle_show_number_distinct_title(carti):
+    res = get_number_titles_for_gen(carti)
+    for gen in res:
+        print(f' Numarul de titluri distincte pentru genul {gen} este {res[gen]}')
+
+
+def handle_undo(carti, undo_list, redo_list):
+    undo_result = do_undo(undo_list,redo_list,carti)
+    if undo_result is not None:
+        return undo_result
+    return carti
+
+
+def handle_redo(carti, undo_list, redo_list):
+    redo_result = do_redo(undo_list, redo_list,carti)
+    if redo_result is not None:
+        return redo_result
+    return carti
+
+
+def run_ui(carti, undo_list, redo_list):
 
     while True:
+
+        print("---------------------------------------------------------------------------")
+        handle_show_all(carti)
         show_menu()
+
         optiune = input('Optiunea aleasa: ')
         if optiune == '1':
-            carti = handle_crud(carti)
+            carti = handle_crud(carti, undo_list, redo_list )
         elif optiune == '2':
             carti = handle_discount(carti)
         elif optiune == '3':
             carti = handle_modify_gen(carti)
+        elif optiune == '4':
+            handle_min_price_gen(carti)
+        elif optiune == '5':
+            handle_sorted_for_price(carti)
+        elif optiune == '6':
+            handle_show_number_distinct_title(carti)
+        elif optiune == 'u':
+            carti = handle_undo(carti ,undo_list ,redo_list)
+        elif optiune == 'r':
+            carti = handle_redo(carti, undo_list, redo_list)
         elif optiune == 'x':
             break
         else:
