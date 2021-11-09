@@ -3,6 +3,7 @@ from Tests.test_discount import test_discount
 from Tests.test_min_price_for_gen import test_get_min_price_for_gen
 from Tests.test_modifygen import organizare_teste
 from Tests.test_ordonare_crescator_dupa_pret import test_ordonare_crecator_dupa_pret
+from Tests.test_undo import test_undo
 from Tests.tests import test_create, test_crud
 from UserInterface.console import run_ui
 from UserInterface.command_line_console import run_command
@@ -39,4 +40,5 @@ if __name__ == '__main__':
     test_discount()
     organizare_teste()
     test_ordonare_crecator_dupa_pret()
+    test_undo()
     main()

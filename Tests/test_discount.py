@@ -12,7 +12,7 @@ def get_data():
 
 def test_discount():
     carti = get_data()
-    new_carti = discount_function(carti)
+    new_carti = discount_function(carti,[],[])
     assert len(new_carti) == 4
     assert get_pret_carte(new_carti[0]) == 94.05
     assert get_pret_carte(new_carti[1]) == 40

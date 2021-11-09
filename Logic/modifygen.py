@@ -1,7 +1,7 @@
 from Domain.carte import get_titlu, get_id, creaza_carte, get_pret_carte, get_reducere_carte
 
 
-def modify_gen(lista_carti, titlu, gen):
+def modify_gen(lista_carti, titlu, gen, undo_list, redo_list):
     """
     Modifica genul unei carti dupa un anume titlu dat de ultilizator
     :param lista_carti: lista de carti
@@ -25,6 +25,8 @@ def modify_gen(lista_carti, titlu, gen):
             new_carti.append(carte_noua)
         else:
             new_carti.append(carte)
+    undo_list.append(lista_carti)
+    redo_list.clear()
     return new_carti
 
 def titlu_apartine_lista(lista_carti , titlu):

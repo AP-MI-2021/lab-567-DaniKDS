@@ -15,12 +15,12 @@ def get_data():
 
 def test_modify_gen():
     carti = get_data()
-    carti = modify_gen(carti, 'cart1', 'g1')
-    carti = modify_gen(carti, 'cart2', 'g2')
+    carti = modify_gen(carti, 'cart1', 'g1',[],[])
+    carti = modify_gen(carti, 'cart2', 'g2',[],[])
     assert get_gen_carte(carti[0]) == 'g1'
     assert get_gen_carte(carti[1]) == 'g2'
     try:
-        _ = modify_gen(carti, 'ccc55' , 'genullll3444')
+        _ = modify_gen(carti, 'ccc55' , 'genullll3444',[],[])
         assert False
     except ValueError:
         assert True  # sau pass

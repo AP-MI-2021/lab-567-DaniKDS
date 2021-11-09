@@ -1,7 +1,7 @@
 from Domain.carte import get_reducere_carte, get_pret_carte, creaza_carte, get_id, get_titlu, get_gen_carte
 
 
-def discount_function(lista_carti):
+def discount_function(lista_carti, undo_list, redo_list):
     """
     O functie care va face un discount de `5%` pentru toate reducerile silver și `10%` pentru toate reducerile gold.
     :param lista_carti: lista actuala de carti
@@ -33,7 +33,8 @@ def discount_function(lista_carti):
             ))
         else:
             result.append(carte)
-
+    undo_list.append(lista_carti)
+    redo_list.clear()
     return result
 
 

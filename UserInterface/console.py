@@ -99,19 +99,23 @@ def handle_crud(carti, undo_list, redo_list):
 
 
 
-def handle_discount(carti):
+def handle_discount(carti ,undo_list, redo_list):
 
-    carti  = discount_function(carti)
+    carti  = discount_function(carti,undo_list,redo_list)
     print("A fost facut discountul cerut de utilizator!")
+    undo_list.append(carti)
+    redo_list.clear()
     return carti
 
 
-def handle_modify_gen(carti):
+def handle_modify_gen(carti, undo_list, redo_list):
     try:
         titlu = input('Dati titlul pentru modificare: ')
         genul = input('Dati noul gen: ')
-        carti = modify_gen(carti, titlu, genul)
+        carti = modify_gen(carti, titlu, genul,undo_list,redo_list)
         print('Modificarea genului a fost efectuata cu succes!')
+        undo_list.append(carti)
+        redo_list.clear()
         return carti
     except ValueError as ve:
         print('Eroare: ', ve)
@@ -161,9 +165,9 @@ def run_ui(carti, undo_list, redo_list):
         if optiune == '1':
             carti = handle_crud(carti, undo_list, redo_list )
         elif optiune == '2':
-            carti = handle_discount(carti)
+            carti = handle_discount(carti ,undo_list, redo_list )
         elif optiune == '3':
-            carti = handle_modify_gen(carti)
+            carti = handle_modify_gen(carti,undo_list, redo_list )
         elif optiune == '4':
             handle_min_price_gen(carti)
         elif optiune == '5':
