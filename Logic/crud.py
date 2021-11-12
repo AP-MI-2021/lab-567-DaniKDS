@@ -1,7 +1,7 @@
 from Domain.carte import creaza_carte, get_id
 
 
-def create(lista_carti, id_carte:int, titlu, gen ,pret:float, tip_reducere:str, undo_list:list, redo_list:list):
+def create(lista_carti, id_carte: int, titlu, gen ,pret:float, tip_reducere:str, undo_list:list, redo_list:list):
     '''
     Cream o lista de carti.
     :param lista_carti:lista de carti

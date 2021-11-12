@@ -2,6 +2,8 @@ from Logic.crud import create
 from Tests.test_discount import test_discount
 from Tests.test_min_price_for_gen import test_get_min_price_for_gen
 from Tests.test_modifygen import organizare_teste
+from Tests.test_operatii_undo_redo import test_undo_redo_update, test_undo_redo_delete, test_undo_redo_discount, \
+    test_undo_redo_modifygen
 from Tests.test_ordonare_crescator_dupa_pret import test_ordonare_crecator_dupa_pret
 from Tests.test_undo import test_undo
 from Tests.tests import test_create, test_crud
@@ -41,4 +43,9 @@ if __name__ == '__main__':
     organizare_teste()
     test_ordonare_crecator_dupa_pret()
     test_undo()
+    test_undo_redo_update()
+    test_undo_redo_delete()
+    test_undo_redo_discount()
+    test_undo_redo_modifygen()
+
     main()

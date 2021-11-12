@@ -51,7 +51,7 @@ def run_command(carti):
         commands = commands_before_split.split(";")
         for command in commands:
 
-            tokens = command.split()
+            tokens = command.split()#tokens reprezinta lista data de utilizator prin comanda
 
             if tokens[0] == "add":
                 carti = handle_add(carti,tokens)

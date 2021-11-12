@@ -53,7 +53,7 @@ def handle_update(carti, undo_list, redo_list):
         gen = input('Dati noul gen al cartii: ')
         pret = float(input('Dati noul pret al cartii: '))
         tip = input('Dati noul tipul de reducere client al cartii: ')
-        return update(carti, creaza_carte(id_carte, titlu, gen, pret, tip,undo_list,redo_list))
+        return update(carti, creaza_carte(id_carte, titlu, gen, pret, tip),undo_list,redo_list)
     except ValueError as ve:
         print('Eroare:', ve)
 
